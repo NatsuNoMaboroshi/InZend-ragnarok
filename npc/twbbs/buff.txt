@@ -1,0 +1,52 @@
+amatsu,116,116,3	script	狀態輔助	596,10,10,{
+
+OnTouch:
+percentheal 100,100;			//HP,SP完全恢復			//
+sc_start SC_BLESSING,600000,10;		//天使之賜福	, 10分鐘 , Lv 10//
+sc_start SC_INCREASEAGI,600000,10;	//加速術	, 10分鐘 , Lv 10//
+sc_start SC_IMPOSITIO,600000,5;		//神威祈福	, 10分鐘 , Lv 5	//
+sc_start SC_ASSUMPTIO,600000,5;	        //聖母之祈福    , 10分鐘 , Lv 5	//
+sc_start SC_MAGNIFICAT,600000,5;
+sc_start SC_GLORIA,600000,5;
+announce "[伺服器人數]  在線 [ "+getusers(1)+" ] 人.",bc_self;
+if($REExpDropSystem)
+{
+	sc_start SC_EXPBOOST,1800000,500;
+	sc_start SC_ITEMBOOST,1800000,500;
+	announce "[經驗掉寶加倍] GM 大放送!! 經驗掉寶 5 倍.",bc_self,0x78C3F0;
+}
+else if($ExpDropSystem)
+{
+	sc_start SC_EXPBOOST,1800000,$Exp;
+	announce "[經驗加倍] 本日加倍倍率 - " +($Exp/100+1)+ " 倍. 開放時間 - 19:00 ~ 22:00 .",bc_self,0x78C3F0;
+}
+else if($ExpDropSystem)
+{
+	sc_start SC_ITEMBOOST,1800000,$Drop;
+	announce "[掉寶加倍] 本日加倍倍率 - " +($Drop/100)+ " 倍. 開放時間 - 19:00 ~ 22:00 .",bc_self,0x78C3F0;
+}
+end;
+
+OnInit:
+	//set $REExpDropSystem,1;
+
+}
+
+-	script	加倍控制	-1,{
+
+OnClock1900:
+
+	set $@a,rand(1,9);
+	set $@b,rand(2,10);
+	set $Exp,$@a * 100;
+	set $Drop,$@b * 100;
+	set $ExpDropSystem,1;
+	end;
+
+OnClock2200:
+
+	set $REExpDropSystem,0;
+	set $ExpDropSystem,0;
+	end;
+
+}

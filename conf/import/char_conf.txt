@@ -1,0 +1,11 @@
+server_name: InZend
+wisp_server_name: heyU
+char_ip: 34.80.59.253
+pincode_enabled: no
+// 角色名稱限制
+char_name_option: 2
+char_name_letters: \/:*?#@!
+// 角色出生
+start_point: amatsu,110,110
+start_point_pre: amatsu,110,110
+start_point_doram: amatsu,110,110

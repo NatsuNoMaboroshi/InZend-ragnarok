@@ -1,0 +1,74 @@
+//===== rAthenaCN Script =======================================
+//= 拓展事件
+//===== By: ==================================================
+//= SheWu
+//===== Current Version: =====================================
+//= 0.1
+//===== Dependency With: =====================================
+// rAthenaCN
+//===== Compatible With: =====================================
+//= rAthenaCN 開發團隊
+//===== Description: =========================================
+//= 用來對 rAthenaCN 拓展事件進行測試的腳本，從這裡也可以學習
+//= 到這些拓展事件的使用方法。
+//============================================================
+
+-	script	RELOAD_WARNING	-1,{
+end;
+OnBeforeReloadScript:
+	// 因此，下面的 announce 公告必須是只有玩家自己可見的 bc_self 類型
+	announce "[全服公告] 正在刷新服務器，可能會卡住幾秒鐘，請別強制退出遊戲！", bc_self|bc_yellow;
+end;
+OnAfterReloadScript:
+	announce "[全服公告] 已經刷新完畢，感謝大家的配合！", bc_self|bc_yellow;
+end;
+}
+
+-	script	EVENT_OFFICIAL_CABIN	-1,{
+function LowerHeadgear;
+end;
+
+OnPCEquipEvent:
+	//dispbottom "[事件演示] OnPCEquipEvent | " + strcharinfo(0) + " 已經裝備頭下!!" + getinventoryinfo(@equip_idx, 2);
+	if(getinventoryinfo(@equip_idx, 2) == 1) LowerHeadgear();
+
+	//if(Class == 4060) set .@string$,"bonus3 bAutoSpell,\"RK_IGNITIONBREAK\",5,10000;";	
+	//setitemscript getinventoryinfo(@equip_idx, 0),"{ bonus bAddMaxWeight,300000;" + .@string$ + " skill \"MG_SIGHT\",1;}",0;
+	//status_calc();
+end;	
+
+function LowerHeadgear {
+	
+	switch(Class) {
+		case 4060: //盧恩
+			set .@string$,"bonus3 bAutoSpell,\"RK_IGNITIONBREAK\",5,1000;";
+			break;
+		case 4062: //遊俠
+			set .@string$,"bonus3 bAutoSpell,\"RA_AIMEDBOLT\",10,1000;";
+			break;
+		case 4065: //斬首
+			set .@string$,"bonus3 bAutoSpell,\"GC_CROSSIMPACT\",5,1000;";
+			break;
+		case 4073: //皇家
+			set .@string$,"bonus3 bAutoSpell,\"LG_OVERBRAND\",5,1000;";
+			break;
+		case 4076: //舞姬
+			set .@string$,"bonus3 bAutoSpell,\"WM_SEVERE_RAINSTORM\",5,1000;";
+			break;
+		case 4075: //樂師
+			set .@string$,"bonus3 bAutoSpell,\"WM_SEVERE_RAINSTORM\",5,1000;";
+			break;
+		case 4077: //修羅
+			set .@string$,"bonus3 bAutoSpell,\"SR_SKYNETBLOW\",5,1000;";
+			break;
+		case 4079: //魅影
+			set .@string$,"bonus3 bAutoSpell,\"SC_TRIANGLESHOT\",10,1000;";
+			break;
+	}
+	setitemscript getinventoryinfo(@equip_idx, 0),"{ bonus bAddMaxWeight,300000;" + .@string$ + " skill \"MG_SIGHT\",1;}",0;
+	status_calc();
+	//dispbottom "角色職業編號為 " + Class + " 增加的技能為" + "{ bonus bAddMaxWeight,300000;" + .@string$ + "}";
+}
+
+}
+

@@ -1,0 +1,20 @@
+amatsu,196,254,3	script	§i¥ÜªO	835,{
+	end;
+OnInit:
+	waitingroom "¶Ë®`´ú¸Õ°Ï€",0;
+	end;
+}
+
+amatsu,219,255,3	script	ªþÅ]®v¥d¦ì	835,{
+	end;
+OnInit:
+	waitingroom "ªþÅ]¥d¦ì",0;
+	end;
+}
+
+amatsu,224,255,3	script	©î¥d®v¥d¦ì	835,{
+	end;
+OnInit:
+	waitingroom "©î¥d®v¥d¦ì",0;
+	end;
+}

@@ -1,0 +1,26 @@
+-	script	AreaWarper	-1,{
+function Go;
+// --------------------------------------------------
+//	Main Menu:
+// --------------------------------------------------
+menu	"- 返回主城",Home,
+    	"- 傷害測試",PunchingTest;
+
+function Go {
+    warp getarg(0),getarg(1,0),getarg(2,0);
+    end;
+}
+
+Home: Go("amatsu",114,123);
+PunchingTest: Go("amatsu",205,250);
+
+end;
+
+OnInit: waitingroom "區域傳送",0;
+}
+
+// --------------------------------------------------
+//  Duplicates:
+// --------------------------------------------------
+amatsu,103,108,6	duplicate(AreaWarper)	區域傳送#home	508
+amatsu,214,254,6	duplicate(AreaWarper)	區域傳送#punching	508
